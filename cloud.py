@@ -5,6 +5,7 @@ from leancloud import LeanEngineError
 import urllib.request
 import socket
 import random
+import time
 from bs4 import BeautifulSoup
 
 from app import app
@@ -33,12 +34,7 @@ def before_todo_save(todo):
 def hellowrld():
 	print('hellowrld22222')
 	return 'hellowrld return'
-	
-@engine.define
-def testRemote():
-	print('hellowrld22222')
-	return 'hellowrld return'
-	
+		
 @engine.define
 def visitAddress():
 	User_Agent = ['Mozilla/5.0 (Windows NT 6.3; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0',
@@ -89,6 +85,7 @@ def visitAddress():
 				req.add_header("User-Agent", random_userAget) 
 				res = urllib.request.urlopen(req).read().decode("utf8")	
 				count = count + 1
+				time.sleep(random.randint(1, 10))	#random sleep
 				print (count)
 				print (res)
 			except Exception as e:
