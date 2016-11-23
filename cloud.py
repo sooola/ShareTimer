@@ -35,6 +35,11 @@ def hellowrld():
 	return 'hellowrld return'
 	
 @engine.define
+def testRemote():
+	print('hellowrld22222')
+	return 'hellowrld return'
+	
+@engine.define
 def visitAddress():
 	User_Agent = ['Mozilla/5.0 (Windows NT 6.3; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0',
 			"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.84 Safari/535.11 LBBROWSER",
