@@ -76,8 +76,6 @@ def visitAddress():
 		count = 0
 		for proxy in proxys:
 			try:
-				if count >=5:
-					break
 				proxy_support=urllib.request.ProxyHandler({'http':proxy})
 				opener = urllib.request.build_opener(proxy_support)
 				random_userAget = random.choice(User_Agent)
@@ -86,12 +84,8 @@ def visitAddress():
 				res = urllib.request.urlopen(req).read().decode("utf8")	
 				count = count + 1
 				time.sleep(random.randint(1, 10))	#random sleep
-				print (count)
-				print (res)
+				print ('count' , count)
 			except Exception as e:
 				print (proxy)
 				print (e)
-				if count >= 5:
-					break
-				else:
-					continue
+				continue
