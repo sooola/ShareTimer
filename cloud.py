@@ -55,8 +55,10 @@ def visitAddress():
 	shareUrl = ['http://t.cn/Rfo1g82',
 	'http://t.cn/RfztMs8'
 	]
+	header = {}
+	header['User-Agent'] = random.choice(User_Agent)
 	ipUrl = 'http://api.xicidaili.com/free2016.txt'
-	req = urllib.request.Request(ipUrl)
+	req = urllib.request.Request(ipUrl ,headers=header)
 	res = urllib.request.urlopen(req).read()
 
 	soup = BeautifulSoup(res , 'html.parser')
@@ -76,16 +78,22 @@ def visitAddress():
 		count = 0
 		for proxy in proxys:
 			try:
+				if count >=5:
+					break
 				proxy_support=urllib.request.ProxyHandler({'http':proxy})
 				opener = urllib.request.build_opener(proxy_support)
+				urllib.request.install_opener(opener)
 				random_userAget = random.choice(User_Agent)
 				req = urllib.request.Request(shareUrl[i])
 				req.add_header("User-Agent", random_userAget) 
 				res = urllib.request.urlopen(req).read().decode("utf8")	
 				count = count + 1
 				time.sleep(random.randint(1, 10))	#random sleep
-				print ('count' , count)
+				print ('--------------------------success-----------------' , count)
 			except Exception as e:
 				print (proxy)
 				print (e)
-				continue
+				if count >= 5:
+					break
+				else:
+					continue
